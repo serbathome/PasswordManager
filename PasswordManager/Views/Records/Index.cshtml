@@ -1,7 +1,9 @@
-﻿@model IEnumerable<PasswordManager.Models.Record>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<PasswordManager.Models.Record>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
 }
 
 <h1>Index</h1>
@@ -34,9 +36,13 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Password)
+                <div id="password">
+                    @Html.DisplayFor(modelItem => item.Password)
+                </div>
             </td>
             <td>
+
+                <div class="btn btn-info" onclick="PwdToClip()">Copy</div> |
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
@@ -45,3 +51,9 @@
 }
     </tbody>
 </table>
+<script type="application/javascript">
+    function PwdToClip() {
+        alert("xoxoxo!");
+        return false;
+    }
+</script>
