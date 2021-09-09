@@ -14,6 +14,14 @@ namespace PasswordManager.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // add a key on User.LoginName to make it unique
+            modelBuilder.Entity<User>()
+                .HasAlternateKey(u => u.LoginName);
+        }
+
         public DbSet<PasswordManager.Models.Record> Record { get; set; }
+        public DbSet<PasswordManager.Models.User> User { get; set; }
     }
 }

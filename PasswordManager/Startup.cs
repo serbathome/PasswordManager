@@ -15,6 +15,7 @@ namespace PasswordManager
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,8 +29,7 @@ namespace PasswordManager
             services.AddRazorPages();
 
             services.AddDbContext<PasswordManagerContext>(options =>
-                    //options.UseCosmos(Configuration.GetConnectionString("PasswordManagerContext"), "PasswordManager"));
-                    options.UseSqlServer(Configuration.GetConnectionString("PasswordManagerContext")));
+                    options.UseNpgsql($"Server=pwdmgr.postgres.database.azure.com;Database=passwords;Port=5432;User Id={Configuration["PostgresUser"]};Password={Configuration["PostgresPassword"]};Ssl Mode=Require;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +58,12 @@ namespace PasswordManager
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Records}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+
+                endpoints.MapControllerRoute(
+                    name: "user",
+                    pattern: "{controller=Users}/{action=Index}/{id?}");
+
+                // endpoints.MapRazorPages();
             });
         }
     }
