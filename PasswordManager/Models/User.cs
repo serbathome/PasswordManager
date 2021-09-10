@@ -15,5 +15,30 @@ namespace PasswordManager.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public virtual List<Record> Records { get; set; } = new List<Record>();
+    }
+
+    public class RegisterModel
+    {
+        [Required(ErrorMessage = "Username not specified")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Password not specified")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Password is incorrect")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Username not specified")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Password not specified")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

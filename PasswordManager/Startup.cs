@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PasswordManager.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace PasswordManager
 {
@@ -30,6 +31,12 @@ namespace PasswordManager
 
             services.AddDbContext<PasswordManagerContext>(options =>
                     options.UseNpgsql($"Server=pwdmgr.postgres.database.azure.com;Database=passwords;Port=5432;User Id={Configuration["PostgresUser"]};Password={Configuration["PostgresPassword"]};Ssl Mode=Require;"));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Users/Login");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +58,7 @@ namespace PasswordManager
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

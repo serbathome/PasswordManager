@@ -1,14 +1,13 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model PasswordManager.Models.Record
+@model PasswordManager.Models.RecordForm
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create new record";
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Create new record</h1>
 
-<h4>Record</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -29,6 +28,8 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

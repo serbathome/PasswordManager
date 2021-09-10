@@ -2,11 +2,11 @@
 @model IEnumerable<PasswordManager.Models.Record>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "All your passwords";
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>All your passwords</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -15,13 +15,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RecordName)
+                Record name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                User name
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
+                Password
             </th>
             <th></th>
         </tr>
