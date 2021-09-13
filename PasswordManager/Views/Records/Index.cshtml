@@ -36,13 +36,11 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                <div id="password">
                     @Html.DisplayFor(modelItem => item.Password)
-                </div>
             </td>
             <td>
 
-                <div class="btn btn-info" onclick="PwdToClip()">Copy</div> |
+                <div class="btn btn-info" onclick="PwdToClip('@item.Password')">Copy</div> |
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
@@ -52,8 +50,8 @@
     </tbody>
 </table>
 <script type="application/javascript">
-    function PwdToClip() {
-        alert("xoxoxo!");
+    function PwdToClip(password) {
+        navigator.clipboard.writeText(password);
         return false;
     }
 </script>

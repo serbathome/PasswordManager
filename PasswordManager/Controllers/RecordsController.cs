@@ -205,5 +205,10 @@ namespace PasswordManager.Controllers
         {
             return _context.Record.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> About()
+        {
+            return View();
+        }
     }
 }
